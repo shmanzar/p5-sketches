@@ -1,0 +1,28 @@
+// based on Dan Schiffman (the Coding Train)'s Flocking Simulation Code
+// https://thecodingtrain.com/CodingChallenges/124-flocking-boids.html
+// https://youtu.be/mhjuuHl6qHM
+
+const flock = [];
+
+let alignSlider, cohesionSlider, separationSlider;
+
+function setup() {
+  createCanvas(640, 360);
+  alignSlider = createSlider(0, 2, 1.5, 0.1);
+  cohesionSlider = createSlider(0, 2, 1, 0.1);
+  separationSlider = createSlider(0, 2, 2, 0.1);
+  for (let index = 0; index < 200; index++) {
+    flock.push(new Boid());
+  }
+}
+
+function draw() {
+  background(51);
+
+  for (let boid of flock) {
+    boid.edges();
+    boid.flock(flock);
+    boid.update();
+    boid.show();
+  }
+}
